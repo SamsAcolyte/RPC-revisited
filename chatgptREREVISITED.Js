@@ -7,33 +7,40 @@ const select = document.querySelector('select');
 let humanScore = 0;
 let computerScore = 0;
 
-select.addEventListener('change', () => {
+// Update humanChoice when player selects an option\select.addEventListener('change', () => {
     humanChoice = select.value;
 });
 
+// Generate a random choice for the computer
 function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
+// Determine the winner of the round
 function determineWinner(humanC, computerC) {
-    if (humanC === computerC) return 'draw';
+    if (humanC === computerC) return 'draw'; // If choices are the same, it's a draw
+    
+    // Winning conditions for human
     return (humanC === 'rock' && computerC === 'scissors') ||
            (humanC === 'paper' && computerC === 'rock') ||
            (humanC === 'scissors' && computerC === 'paper')
         ? 'human' : 'computer';
 }
 
+// Update the score based on the round winner
 function updateScore(winner) {
     if (winner === 'human') humanScore++;
     else if (winner === 'computer') computerScore++;
 }
 
+// Update the score display in the UI
 function updateScoreLogs() {
     computerScoreLog.textContent = computerScore;
     humanScoreLog.textContent = humanScore;
 }
 
+// Create and append a log entry for the round
 function createRoundLog(humanC, compC, roundW) {
     const record = document.createElement('li');
     record.textContent = roundW === 'draw' 
@@ -42,6 +49,7 @@ function createRoundLog(humanC, compC, roundW) {
     logContainer.appendChild(record);
 }
 
+// Declare the overall winner when a player reaches 3 points
 function declareWinner() {
     if (humanScore === 3 || computerScore === 3) {
         const gameWinner = humanScore === 3 ? 'human' : 'computer';
@@ -49,6 +57,7 @@ function declareWinner() {
         winnerMessage.textContent = `Game over! Winner is ${gameWinner}`;
         logContainer.appendChild(winnerMessage);
 
+        // Show an alert after a short delay to allow UI update
         setTimeout(() => {
             alert(gameWinner === 'human' ? 'Hurray! You won!' : 'Hard luck! Computer wins!');
         }, 100);
@@ -57,6 +66,7 @@ function declareWinner() {
     }
 }
 
+// Reset the game to initial state
 function resetGame() {
     humanScore = 0;
     computerScore = 0;
@@ -66,12 +76,15 @@ function resetGame() {
     select.value = 'didNotChoose';
 }
 
+// Main function to handle game flow
 function play() {
+    // If game is over, reset before starting a new one
     if (humanScore === 3 || computerScore === 3) {
         resetGame();
         return;
     }
 
+    // Ensure player has made a selection before playing
     if (!select.value || select.value === 'didNotChoose') {
         alert('You did not choose!');
         return;
@@ -90,4 +103,5 @@ function play() {
     }
 }
 
+// Attach event listener to play button
 playButton.addEventListener('click', play);
