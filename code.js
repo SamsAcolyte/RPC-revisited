@@ -8,6 +8,8 @@ let humanScore = 0;
 let computerScore = 0;
 
 let humanChoice;
+let computerChoice;
+let roundWinner;
 
 select.addEventListener('change', function () {
 humanChoice = select.value
@@ -18,29 +20,29 @@ function getComputerChoice () {
     
     switch (randomNumber) {
         case 0 :
-            return "rock";
-            
+            computerChoice = "rock";
+             break;
         
         case 1:
-            return "paper";
-           
+            computerChoice = "paper";
+             break;
 
         case 2 :
-            return "scissors";
-               
+            computerChoice = "scissors";
+             break; 
     }
 
 }
 
-function determineWinner (humanC,computerC) {
-    if (humanC === computerC) {
-        return "draw"
+function determineWinner (humanChoice,computerC) {
+    if (humanChoice === computerC) {
+        roundWinner = "draw"
     }
     else if 
-    ((humanC === "rock" && computerC === "paper") || (humanC === "paper" && computerC === "scissors")) {
-        return "computer"
+    ((humanChoice === "rock" && computerC === "paper") || (humanChoice === "paper" && computerC === "scissors")) {
+        roundWinner = "computer"
     }
-    else { return "human"}
+    else { roundWinner = "human"}
 }
 function updateScore (winner) {
     switch (winner) {
@@ -60,4 +62,11 @@ function updateScore (winner) {
 function updateScoreLogs (){
     computerScoreLog.textContent = computerScore;
     humanScoreLog.textContent = humanScore;
+}
+
+function createRoundLog (humC, compC, roundWinner) {
+    const record = document.createElement('li');
+    record.textContent= `You played ${humC}, and computer played ${compC}. ${roundWinner} wins the round.`
+    
+    log.appendChild(record);
 }
