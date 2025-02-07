@@ -1,7 +1,7 @@
 const playButton = document.querySelector('button')
 const computerScoreLog = document.querySelector('.compS')
 const humanScoreLog = document.querySelector('.humS')
-const log = document.querySelector('.log')
+const logContainer = document.querySelector('.logContainer')
 const select = document.querySelector ("select")
 
 let humanScore = 0;
@@ -66,7 +66,20 @@ function updateScoreLogs (){
 
 function createRoundLog (humC, compC, roundWinner) {
     const record = document.createElement('li');
+    if (roundWinner === 'draw') {
+         record.textContent= `You played ${humC}, and computer played ${compC}. it's a draw`
+    }
+    else {
     record.textContent= `You played ${humC}, and computer played ${compC}. ${roundWinner} wins the round.`
-    
-    log.appendChild(record);
+    }
+    logContainer.appendChild(record);
+}
+
+function reset () {
+    humanScore = 0;
+    computerScore = 0;
+    humanChoice = '';
+    computerChoice = '';
+    logContainer.innerHTML = '';
+    playButton.textContent = 'Play!'
 }
