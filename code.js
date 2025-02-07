@@ -1,4 +1,4 @@
-const playButton = document.querySelector('button')
+const playButton = document.querySelector('.playButton')
 const computerScoreLog = document.querySelector('.compS')
 const humanScoreLog = document.querySelector('.humS')
 const logContainer = document.querySelector('.logContainer')
@@ -35,12 +35,12 @@ function getComputerChoice () {
 
 }
 
-function determineWinner (humanChoice,computerC) {
-    if (humanChoice === computerC) {
+function determineWinner (humanC,computerC) {
+    if (humanC === computerC) {
         roundWinner = "draw"
     }
     else if 
-    ((humanChoice === "rock" && computerC === "paper") || (humanChoice === "paper" && computerC === "scissors")) {
+    ((humanC === "rock" && computerC === "paper") || (humanC === "paper" && computerC === "scissors")) {
         roundWinner = "computer"
     }
     else { roundWinner = "human"}
@@ -65,25 +65,17 @@ function updateScoreLogs (){
     humanScoreLog.textContent = humanScore;
 }
 
-function createRoundLog (humC, compC, roundWinner) {
+function createRoundLog (humC, compC, roundW) {
     const record = document.createElement('li');
-    if (roundWinner === 'draw') {
+    if (roundW === 'draw') {
          record.textContent= `You played ${humC}, and computer played ${compC}. it's a draw`
     }
     else {
-    record.textContent= `You played ${humC}, and computer played ${compC}. ${roundWinner} wins the round.`
+    record.textContent= `You played ${humC}, and computer played ${compC}. ${roundW} wins the round.`
     }
     logContainer.appendChild(record);
 }
 
-function reset () {
-    humanScore = 0;
-    computerScore = 0;
-    humanChoice = '';
-    computerChoice = '';
-    logContainer.innerHTML = '';
-    playButton.textContent = 'Play!'
-}
 
 function declareWinner () {
     if (humanScore === 3) {
@@ -98,4 +90,39 @@ function declareWinner () {
         winner.textContent = `Game over! winner is ${gameWinner}`;
         logContainer.appendChild(winner);
     
+    playButton.textContent = "Play again!"
+}
+
+function reset () {
+    humanScore = 0;
+    computerScore = 0;
+    humanChoice = '';
+    computerChoice = '';
+    logContainer.innerHTML = '';
+    playButton.textContent = 'Play!'
+}
+
+function play () { 
+    if (humanScore === 3 || computerScore === 3) {
+        reset();
+        return;
+    }
+    
+    if (!humanChoice || humanChoice === 'didNotChoose' || select.value === 'didNotChoose') {
+        alert ('You did not choose!');
+        return;
+    }
+    else {
+        getComputerChoice();
+        determineWinner (humanChoice, computerChoice);
+        updateScore(roundWinner);
+        updateScoreLogs();
+        createRoundLog(humanChoice, computerChoice, roundWinner);
+        
+        if ( humanScore === 3 || computerScore ===3) {
+            declareWinner();
+        }
+        
+    }
+
 }
