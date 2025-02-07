@@ -6,7 +6,6 @@ const log = document.querySelector('.log')
 function getComputerChoice () {
     let randomNumber = Math.floor(Math.random()*3);
     
-
     switch (randomNumber) {
         case 0 :
             return "rock";
@@ -20,7 +19,6 @@ function getComputerChoice () {
             return "scissors";
                
     }
-    
-    
 
 }
+
