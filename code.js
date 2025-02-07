@@ -29,6 +29,13 @@ function getComputerChoice () {
 
 }
 
-function getHumanChoice () {
-
+function determineWinner (humanC,computerC) {
+    if (humanC === computerC) {
+        return "draw"
+    }
+    else if 
+    ((humanC === "rock" && computerC === "paper") || (humanC === "paper" && computerC === "scissors")) {
+        return "computer"
+    }
+    else { return "human"}
 }
