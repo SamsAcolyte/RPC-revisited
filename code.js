@@ -56,3 +56,8 @@ function updateScore (winner) {
             break;
     }
 }
+
+function updateScoreLogs (){
+    computerScoreLog.textContent = computerScore;
+    humanScoreLog.textContent = humanScore;
+}
