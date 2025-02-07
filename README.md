@@ -2,15 +2,15 @@
 rock paper scissors game where a player plays against the computer.
 
 - the computer's choice is randomly generated.
-- the player chooses from a prompt
-- best of 3
+- the player chooses from a select
+- best of 5
 - rounds log
 - win or lose log
 - computer and player score
 - play button
 - play again button
 
-Pseudocode:
+
 1- Create play button in html and link it in js.
 2- Create computer and human score holder in html and link them in js.
 3- Create rounds log holder in html and link them in js.
@@ -18,6 +18,8 @@ Pseudocode:
 4- Write getComputerChoice function
 5- Write determineWinner function
 6- Write reset function
+
+Pseudocode:
 
 1- Player hit play.
 2- prompt asks for player's choice

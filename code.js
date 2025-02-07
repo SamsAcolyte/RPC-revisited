@@ -77,21 +77,35 @@ function createRoundLog (humC, compC, roundW) {
 }
 
 
-function declareWinner () {
+function declareWinner() {
     if (humanScore === 3) {
         gameWinner = 'human';
-        alert ('Hurray! you won!')
+
+        const winner = document.createElement('div');
+        winner.textContent = `Game over! Winner is ${gameWinner}`;
+        logContainer.appendChild(winner);
+
+        // Delay alert to allow DOM update
+        setTimeout(() => {
+            alert('Hurray! You won!');
+        }, 100); // 100 milliseconds delay
     }
     else if (computerScore === 3) {
-        gameWinner = 'computer'
-        alert ('Hard luck! computer wins!')
-    }
-    const winner = document.createElement ('div');
-        winner.textContent = `Game over! winner is ${gameWinner}`;
+        gameWinner = 'computer';
+
+        const winner = document.createElement('div');
+        winner.textContent = `Game over! Winner is ${gameWinner}`;
         logContainer.appendChild(winner);
-    
-    playButton.textContent = "Play again!"
+
+        // Delay alert to allow DOM update
+        setTimeout(() => {
+            alert('Hard luck! Computer wins!');
+        }, 100); // 100 milliseconds delay
+    }
+
+    playButton.textContent = "Play again!";
 }
+
 
 function reset () {
     humanScore = 0;
@@ -100,6 +114,9 @@ function reset () {
     computerChoice = '';
     logContainer.innerHTML = '';
     playButton.textContent = 'Play!'
+    computerScoreLog.textContent = computerScore;
+    humanScoreLog.textContent = humanScore;
+    select.value = 'didNotChoose'
 }
 
 function play () { 
@@ -107,7 +124,7 @@ function play () {
         reset();
         return;
     }
-    
+
     if (!humanChoice || humanChoice === 'didNotChoose' || select.value === 'didNotChoose') {
         alert ('You did not choose!');
         return;
@@ -126,3 +143,5 @@ function play () {
     }
 
 }
+
+playButton.addEventListener('click', play);
