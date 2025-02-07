@@ -10,6 +10,7 @@ let computerScore = 0;
 let humanChoice;
 let computerChoice;
 let roundWinner;
+let gameWinner;
 
 select.addEventListener('change', function () {
 humanChoice = select.value
@@ -82,4 +83,19 @@ function reset () {
     computerChoice = '';
     logContainer.innerHTML = '';
     playButton.textContent = 'Play!'
+}
+
+function declareWinner () {
+    if (humanScore === 3) {
+        gameWinner = 'human';
+        alert ('Hurray! you won!')
+    }
+    else if (computerScore === 3) {
+        gameWinner = 'computer'
+        alert ('Hard luck! computer wins!')
+    }
+    const winner = document.createElement ('div');
+        winner.textContent = `Game over! winner is ${gameWinner}`;
+        logContainer.appendChild(winner);
+    
 }
