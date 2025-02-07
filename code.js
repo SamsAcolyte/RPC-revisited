@@ -1,8 +1,11 @@
 const playButton = document.querySelector('button')
-const computerScore = document.querySelector('.compS')
-const humanScore = document.querySelector('.humS')
+const computerScoreLog = document.querySelector('.compS')
+const humanScoreLog = document.querySelector('.humS')
 const log = document.querySelector('.log')
 const select = document.querySelector ("select")
+
+let humanScore = 0;
+let computerScore = 0;
 
 let humanChoice;
 
@@ -38,4 +41,18 @@ function determineWinner (humanC,computerC) {
         return "computer"
     }
     else { return "human"}
+}
+function updateScore (winner) {
+    switch (winner) {
+        case 'human':
+            humanScore +=1 
+            break;
+        
+        case 'computer' :
+            computerScore +=1
+            break;
+
+        case 'draw' :
+            break;
+    }
 }
